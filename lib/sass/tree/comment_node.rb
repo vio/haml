@@ -12,7 +12,7 @@ module Sass::Tree
     def to_s(tabs = 0, parent_name = nil)
       return if @style == :compressed
 
-      spaces = '  ' * (tabs - 1)
+      spaces = @tab_space * (tabs - 1)
       spaces + "/* " + ([value] + children.map {|c| c.text}).
         join(@style == :compact ? ' ' : "\n#{spaces} * ") + " */"
     end

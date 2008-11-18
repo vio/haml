@@ -92,6 +92,7 @@ module Sass
         :style => :nested,
         :load_paths => ['.']
       }.merge! options
+
       @template = template
       @environment = Environment.new
       @environment.set_var("important", Script::String.new("!important"))

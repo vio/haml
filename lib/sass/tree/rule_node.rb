@@ -30,7 +30,7 @@ module Sass::Tree
       rule_split = /\s*,\s*/
       rule_separator = @style == :compressed ? ',' : ', '
       line_separator = [:nested, :expanded].include?(@style) ? ",\n" : rule_separator
-      rule_indent = '  ' * (tabs - 1)
+      rule_indent = @tab_space * (tabs - 1)
       total_rule = if super_rules
         super_rules.split(",\n").map do |super_line|
           super_line.strip.split(rule_split).map do |super_rule|
@@ -64,8 +64,8 @@ module Sass::Tree
 
       to_return = ''
       if !attributes.empty?
-        old_spaces = '  ' * (tabs - 1)
-        spaces = '  ' * tabs
+        old_spaces = @tab_space * (tabs - 1)
+        spaces = @tab_space * tabs
         if @options[:line_comments] && @style != :compressed
           to_return << "#{old_spaces}/* line #{line}"
 

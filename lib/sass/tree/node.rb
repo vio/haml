@@ -9,6 +9,8 @@ module Sass
         @options = options
         @style = options[:style]
         @children = []
+        # Save the tab method used 
+        @tab_space = (@options[:smart_tabs] ? "\t" : "  ")
       end
 
       def <<(child)

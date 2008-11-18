@@ -9,6 +9,7 @@ module Sass::Tree
     end
     
     def to_s(tabs, parent_name = nil)
+
       if value[-1] == ?;
         raise Sass::SyntaxError.new("Invalid attribute: #{declaration.dump} (This isn't CSS!).", @line)
       end
@@ -24,7 +25,7 @@ module Sass::Tree
                     when :compressed; ''
                     else "\n"
                     end
-      spaces = '  ' * (tabs - 1)
+      spaces = @tab_space * (tabs - 1)
       to_return = ''
       if !value.empty?
         to_return << "#{spaces}#{real_name}:#{@style == :compressed ? '' : ' '}#{value};#{join_string}"

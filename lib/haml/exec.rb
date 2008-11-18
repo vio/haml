@@ -189,6 +189,9 @@ END
         opts.on('-I', '--load-path PATH', 'Add a sass import path.') do |path|
           @options[:for_engine][:load_paths] << path
         end
+        opts.on('-S', '--smart-tabs', 'Use smart tabs for indentation.') do
+          @options[:for_engine][:smart_tabs] = true
+        end
       end
 
       def process_result
@@ -205,6 +208,8 @@ END
 
         template = input.read()
         input.close() if input.is_a? File
+        
+        @options[:for_engine][:smart_tabs] = ( @options[:for_engine][:smart_tabs] ? true : false )
 
         begin
           # We don't need to do any special handling of @options[:check_syntax] here,

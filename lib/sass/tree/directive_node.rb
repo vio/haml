@@ -8,13 +8,14 @@ module Sass::Tree
     end
 
     def to_s(tabs)
+      
       if children.empty?
         value + ";"
       else
         result = if @style == :compressed
                    "#{value}{"
                  else
-                   "#{'  ' * (tabs - 1)}#{value} {" + (@style == :compact ? ' ' : "\n")
+                   "#{@tab_space * (tabs - 1)}#{value} {" + (@style == :compact ? ' ' : "\n")
                  end
         was_attr = false
         first = true
